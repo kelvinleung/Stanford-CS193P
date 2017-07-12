@@ -14,6 +14,18 @@ class ViewController: UIViewController {
         didSet {
             let pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(changeScale(byReactingTo:)))
             faceView.addGestureRecognizer(pinchRecognizer)
+            
+            let tabRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleEyes(byReactingTo:)))
+            faceView.addGestureRecognizer(tabRecognizer)
+            
+            let swipeUpRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(increaseHappiness))
+            swipeUpRecognizer.direction = .up
+            faceView.addGestureRecognizer(swipeUpRecognizer)
+            
+            let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(decreaseHappiness))
+            swipeDownRecognizer.direction = .down
+            faceView.addGestureRecognizer(swipeDownRecognizer)
+            
             updateUI()
         }
     }
@@ -22,6 +34,7 @@ class ViewController: UIViewController {
         switch pinchRecognizer.state {
         case .changed, .ended:
             faceView.scale *= pinchRecognizer.scale
+            //  rescale from 1
             pinchRecognizer.scale = 1
         default:
             break
@@ -38,7 +51,17 @@ class ViewController: UIViewController {
         }
     }
     
+    func increaseHappiness() {
+        expression = expression.happier
+    }
+    
+    func decreaseHappiness() {
+        expression = expression.sadder
+    }
+    
+    
     //  might be excuted before faceView wired up
+    //  controll the model
     var expression = FacialExpression(eyes: .open, mouth: .grin) {
         didSet {
             updateUI()

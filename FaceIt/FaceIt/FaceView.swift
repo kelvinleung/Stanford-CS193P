@@ -12,13 +12,14 @@ import UIKit
 class FaceView: UIView {
     
     @IBInspectable
+    //  ask for redraw
     var scale: CGFloat = 0.9 { didSet{ setNeedsDisplay() } }
     
     @IBInspectable
-    var mouthCurvature: Double = 1.0
+    var mouthCurvature: Double = 1.0 { didSet{ setNeedsDisplay() } }
     
     @IBInspectable
-    var eyesOpen: Bool = true
+    var eyesOpen: Bool = true { didSet{ setNeedsDisplay() } }
     
     @IBInspectable
     var lineWidth: CGFloat = 5.0
