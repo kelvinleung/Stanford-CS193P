@@ -20,6 +20,7 @@ class ImageViewController: UIViewController {
         }
     }
 
+    //  will be set by segue
     var imageURL: URL? {
         didSet {
             image = nil
@@ -35,9 +36,16 @@ class ImageViewController: UIViewController {
             //  Data() will throw error, need to "try"
             //  init(contentsOf: URL, options: Data.ReadingOptions)
             //  Creates a data buffer with the contents of a URL.
-            let urlContents = try? Data(contentsOf: url)
-            if let imageData = urlContents {
-                image = UIImage(data: imageData)
+            //  self is captured by the closure, tag "weak" to release it
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                let urlContents = try? Data(contentsOf: url)
+                //  if multiple fetch happens, check if url is the current one
+                if let imageData = urlContents, url == self?.imageURL {
+                    //  all UI operation should happen in the main Q
+                    DispatchQueue.main.async {
+                        self?.image = UIImage(data: imageData)
+                    }
+                }
             }
         }
     }
@@ -56,11 +64,6 @@ class ImageViewController: UIViewController {
             //  use optional chaining, scrollView may not be available yet
             scrollView?.contentSize = imageView.frame.size
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        imageURL = DemoURL.stanford
     }
     
     override func viewWillAppear(_ animated: Bool) {
