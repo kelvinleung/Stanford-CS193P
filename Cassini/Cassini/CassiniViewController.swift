@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CassiniViewController: UIViewController {
+class CassiniViewController: UIViewController, UISplitViewControllerDelegate {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let url = DemoURL.NASA[segue.identifier ?? ""] {
@@ -17,6 +17,27 @@ class CassiniViewController: UIViewController {
                 imageVC.title = (sender as? UIButton)?.currentTitle
             }
         }
+    }
+    
+    //  set this controll to be the splitview delegate
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.splitViewController?.delegate = self
+    }
+    
+    //  return true to not show detail, aka the ImageViewController
+    //  return false to show detail
+    func splitViewController(
+        _ splitViewController: UISplitViewController,
+        collapseSecondary secondaryViewController: UIViewController,
+        onto primaryViewController: UIViewController
+    ) -> Bool {
+        if primaryViewController.contents == self {
+            if let ivc = secondaryViewController.contents as? ImageViewController, ivc.imageURL == nil {
+                return true
+            }
+        }
+        return false
     }
 }
 
