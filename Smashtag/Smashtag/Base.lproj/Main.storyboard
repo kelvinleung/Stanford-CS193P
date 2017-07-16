@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="120" id="AfU-AO-pCh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="120" id="AfU-AO-pCh" customClass="TweetTableViewCell" customModule="Smashtag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AfU-AO-pCh" id="rhZ-Uu-w6a">
@@ -74,6 +74,12 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="Jzn-ma-62S" secondAttribute="leading" id="giS-h9-MPb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tweetCreatedLabel" destination="Qwv-ri-hTD" id="wcl-4U-5TX"/>
+                                    <outlet property="tweetProfileImageView" destination="WO6-l9-9xf" id="gYN-C6-cBm"/>
+                                    <outlet property="tweetTextLabel" destination="a0B-3n-4mR" id="m8Y-zK-j3o"/>
+                                    <outlet property="tweetUserLabel" destination="1rT-XO-bbh" id="LCh-73-d8S"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

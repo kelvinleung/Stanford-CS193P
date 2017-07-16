@@ -15,7 +15,7 @@ class TweetTableViewController: UITableViewController {
     private var tweets = [Array<Twitter.Tweet>]() {
         didSet {
             //  debug check
-            print(tweets)
+//            print(tweets)
         }
     }
     
@@ -77,9 +77,12 @@ class TweetTableViewController: UITableViewController {
 
         // Configure the cell...
         //  the cell is set to be "Subtitle"
-//        let tweet: Tweet = tweets[indexPath.section][indexPath.row]
+        let tweet: Tweet = tweets[indexPath.section][indexPath.row]
 //        cell.textLabel?.text = tweet.text
 //        cell.detailTextLabel?.text = tweet.user.name
+        if let tweetCell = cell as? TweetTableViewCell {
+            tweetCell.tweet = tweet
+        }
 
         return cell
     }
