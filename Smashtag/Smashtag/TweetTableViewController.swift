@@ -77,9 +77,9 @@ class TweetTableViewController: UITableViewController {
 
         // Configure the cell...
         //  the cell is set to be "Subtitle"
-        let tweet: Tweet = tweets[indexPath.section][indexPath.row]
-        cell.textLabel?.text = tweet.text
-        cell.detailTextLabel?.text = tweet.user.name
+//        let tweet: Tweet = tweets[indexPath.section][indexPath.row]
+//        cell.textLabel?.text = tweet.text
+//        cell.detailTextLabel?.text = tweet.user.name
 
         return cell
     }
