@@ -9,7 +9,7 @@
 import UIKit
 import Twitter
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UISearchBarDelegate {
     
     //  the "model"
     private var tweets = [Array<Twitter.Tweet>]() {
@@ -21,11 +21,12 @@ class TweetTableViewController: UITableViewController {
     
     var searchText: String? {
         didSet {
+            searchTweets?.resignFirstResponder()
             //  change the model
             tweets.removeAll()
             tableView.reloadData()
             searchForTweets()
-            title = searchText
+            title = "#\(searchText ?? "")"
         }
     }
     
@@ -54,9 +55,25 @@ class TweetTableViewController: UITableViewController {
         }
     }
     
+    @IBOutlet weak var searchTweets: UISearchBar! {
+        didSet {
+            searchTweets.delegate = self
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar == searchTweets {
+            searchText = searchBar.text
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchText = "#stanford"
+        title = "Twitter"
+        //  make cell row adaptive
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+//        searchText = "#stanford"
     }
 
     // MARK: - Table view data source
@@ -75,7 +92,7 @@ class TweetTableViewController: UITableViewController {
         //  "identifier" is set in SB
         let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath)
 
-        // Configure the cell...
+        //  Configure the cell...
         //  the cell is set to be "Subtitle"
         let tweet: Tweet = tweets[indexPath.section][indexPath.row]
 //        cell.textLabel?.text = tweet.text
