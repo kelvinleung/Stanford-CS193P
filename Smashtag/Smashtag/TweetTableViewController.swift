@@ -40,6 +40,11 @@ class TweetTableViewController: UITableViewController, UISearchBarDelegate {
     //  keep track of the last request, if new one comes back, skip the old
     private var lastTwitterRequest: Twitter.Request?
     
+    func insertTweets(_ newTweets: [Twitter.Tweet]) {
+        self.tweets.insert(newTweets, at: 0)
+        self.tableView.insertSections([0], with: .fade)
+    }
+    
     private func searchForTweets() {
         if let request = twitterRequest() {
             lastTwitterRequest = request
@@ -47,8 +52,7 @@ class TweetTableViewController: UITableViewController, UISearchBarDelegate {
                 //  UI operation must in main Q
                 DispatchQueue.main.async {
                     if request == self?.lastTwitterRequest {
-                        self?.tweets.insert(newTweets, at: 0)
-                        self?.tableView.insertSections([0], with: .fade)
+                        self?.insertTweets(newTweets)
                     }
                 }
             }
@@ -94,7 +98,7 @@ class TweetTableViewController: UITableViewController, UISearchBarDelegate {
 
         //  Configure the cell...
         //  the cell is set to be "Subtitle"
-        let tweet: Tweet = tweets[indexPath.section][indexPath.row]
+        let tweet: Twitter.Tweet = tweets[indexPath.section][indexPath.row]
 //        cell.textLabel?.text = tweet.text
 //        cell.detailTextLabel?.text = tweet.user.name
         if let tweetCell = cell as? TweetTableViewCell {
