@@ -19,6 +19,7 @@
 		B6D691A91F1E4D43001F7EED /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D691A81F1E4D43001F7EED /* Tweet.swift */; };
 		B6D691AB1F1E4DD7001F7EED /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D691AA1F1E4DD7001F7EED /* TwitterUser.swift */; };
 		B6D691AD1F1E6409001F7EED /* SmashTweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D691AC1F1E6409001F7EED /* SmashTweetTableViewController.swift */; };
+		B6D691AF1F1FA428001F7EED /* SmashTweetersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D691AE1F1FA428001F7EED /* SmashTweetersTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		B6D691A81F1E4D43001F7EED /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		B6D691AA1F1E4DD7001F7EED /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		B6D691AC1F1E6409001F7EED /* SmashTweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashTweetTableViewController.swift; sourceTree = "<group>"; };
+		B6D691AE1F1FA428001F7EED /* SmashTweetersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashTweetersTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				B68015CB1F1BB7B90067F65F /* TweetTableViewCell.swift */,
 				B68015C51F1B8B390067F65F /* TweetTableViewController.swift */,
 				B6D691AC1F1E6409001F7EED /* SmashTweetTableViewController.swift */,
+				B6D691AE1F1FA428001F7EED /* SmashTweetersTableViewController.swift */,
 				B68015BE1F1B8AE90067F65F /* Info.plist */,
 				B68015C41F1B8AFF0067F65F /* Supporting Files */,
 			);
@@ -187,6 +190,7 @@
 				B68015C61F1B8B390067F65F /* TweetTableViewController.swift in Sources */,
 				B6D691A71F1E4AFE001F7EED /* Smash.xcdatamodeld in Sources */,
 				B68015CC1F1BB7B90067F65F /* TweetTableViewCell.swift in Sources */,
+				B6D691AF1F1FA428001F7EED /* SmashTweetersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
