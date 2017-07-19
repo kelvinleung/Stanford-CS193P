@@ -20,6 +20,25 @@ class SmashTweetTableViewController: TweetTableViewController {
     }
     
     private func updateDatabase(with tweets: [Twitter.Tweet]) {
-        
+        container?.performBackgroundTask { [weak self] context in
+            for twitterInfo in tweets {
+                _ = try? Tweet.findOneOrCreateTweet(matching: twitterInfo, in: context)
+            }
+            try? context.save()
+            self?.printDatabaseStatistics()
+        }
+    }
+    
+    private func printDatabaseStatistics() {
+        if let context = container?.viewContext {
+            context.perform {
+                if let tweetCount = try? context.count(for: Tweet.fetchRequest()) {
+                    print("\(tweetCount) tweets")
+                }
+                if let twitterCount = try? context.count(for: TwitterUser.fetchRequest()) {
+                    print ("\(twitterCount) Twitter users")
+                }
+            }
+        }
     }
 }
